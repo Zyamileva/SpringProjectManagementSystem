@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:include="navigation"></div>
+<form th:action="@{/user/update/{user_id}(user_id=${user.id})}" object="${userDto}"  method="POST">
+    <label style="text-align: left; width:130px; margin:15px">User email </label>
+    <input style="text-align: left; width:250px; margin:15px"; type="text" th:name="email"><br>
+    <label style="text-align: left; width:130px; margin:15px">User password </label>
+    <input style="text-align: left; width:250px; margin:15px"; type="text" th:name="password"><br>
+    <label style="text-align: left; width:130px; margin:15px">User FirstName </label>
+    <input style="text-align: left; width:250px; margin:15px"; type="text" th:name="firstname"><br>
+    <label style="text-align: left; width:130px; margin:15px">User LastName </label>
+    <input style="text-align: left; width:250px; margin:15px"; type="text" th:name="lastname"><br>
+    <button style="margin: 15px"; type="submit">Update</button>
+</form>
+</body>
+</html>

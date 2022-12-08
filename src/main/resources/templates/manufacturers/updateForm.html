@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:include="navigation"></div>
+<form action="/manufacturer/update" method="POST">
+    <label style="margin: 15px"> Search manufacturer for update: </label><br>
+    <select style="text-align: left; width:250px; margin:15px"; th:name="manufacturer">
+        <option th:each="manufacturer : ${manufacturers}"
+                th:value="${manufacturer.id}"
+                th:text="${manufacturer.name}">
+        </option>
+    </select>
+    <button style="margin: 15px"; type="submit">Update manufacturer</button>
+</form>
+</body>
+</html>

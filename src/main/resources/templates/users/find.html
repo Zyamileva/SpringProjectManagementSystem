@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:include="navigation"></div>
+<table>
+    <thead>
+    <tr th:if="${users!=null}">
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">email:</th>
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">password:</th>
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">firstName:</th>
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">lastName:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.email}"></td>
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.password}"></td>
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.firstname}"></td>
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.lastname}"></td>
+        <td style="text-align: center; width:250px; margin: 15px">
+            <a th:href="@{/user/{user_id}(user_id=${user.id})}" href="/user">roles</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><strong style="margin: 155px" th:text="${user}"></strong></p>
+</body>
+</html>

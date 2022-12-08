@@ -1,0 +1,24 @@
+INSERT INTO public.manufacturers (id, name) VALUES ('0a90027a-ece3-48b1-9bc9-ef192b4e1e13', 'Mars');
+INSERT INTO public.manufacturers (id, name) VALUES ('0b86547a-ece3-48b1-9bc9-ef192b4e1e13', 'Snickers');
+INSERT INTO public.manufacturers (id, name) VALUES ('0a32157b-ece3-48b1-9bc9-ef192d4e1e53', 'Milky Way');
+
+INSERT INTO public.products (id, name, price, manufacturer_id) VALUES (gen_random_uuid(), 'chocolate', 255543, '0a90027a-ece3-48b1-9bc9-ef192b4e1e13');
+INSERT INTO public.products (id, name, price, manufacturer_id) VALUES (gen_random_uuid(), 'candy', 1354, '0a90027a-ece3-48b1-9bc9-ef192b4e1e13');
+INSERT INTO public.products (id, name, price, manufacturer_id) VALUES (gen_random_uuid(), 'chocolate', 7200, '0b86547a-ece3-48b1-9bc9-ef192b4e1e13');
+INSERT INTO public.products (id, name, price, manufacturer_id) VALUES (gen_random_uuid(), 'candy', 2500, '0b86547a-ece3-48b1-9bc9-ef192b4e1e13');
+INSERT INTO public.products (id, name, price, manufacturer_id) VALUES (gen_random_uuid(), 'dragee', 3720, '0a32157b-ece3-48b1-9bc9-ef192d4e1e53');
+INSERT INTO public.products (id, name, price, manufacturer_id) VALUES (gen_random_uuid(), 'candy on a stick', 3890, '0a32157b-ece3-48b1-9bc9-ef192d4e1e53');
+
+INSERT INTO public.role (id, name) VALUES ('5a65157b-ece3-78b1-9bc9-ef192d4e1e53', 'Admin');
+INSERT INTO public.role (id, name) VALUES ('0c56847a-ece3-48b1-9bc9-ef192d4e1e53', 'User');
+
+INSERT INTO public.users (id, email, password, firstname, lastname) VALUES ('5a56757b-ece3-78b1-9bc9-ef192d4e1e53', 'zyamileva@ukr.net', 'zyamileva123', 'Lena', 'Zyamileva');
+INSERT INTO public.users (id, email, password, firstname, lastname) VALUES ('5a62757b-ece3-78b1-9bc9-ef192d4e1e53', 'ivanova@ukr.net', 'ivanova7', 'Lera', 'Ivanova');
+INSERT INTO public.users (id, email, password, firstname, lastname) VALUES ('5a56757b-ece3-78b1-9bc9-ef192d4e1e93', 'petrova@ukr.net', 'petrova13', 'Inna', 'Petrova');
+INSERT INTO public.users (id, email, password, firstname, lastname) VALUES ('9a56757b-ece3-78b1-9bc9-ef192d4e1e93', 'kozlov@ukr.net', 'kozlov456', 'Ivan', 'Kozlov');
+
+INSERT INTO public.user_role_relation (role_id, user_id) VALUES ('5a65157b-ece3-78b1-9bc9-ef192d4e1e53', '5a56757b-ece3-78b1-9bc9-ef192d4e1e53');
+INSERT INTO public.user_role_relation (role_id, user_id) VALUES ('0c56847a-ece3-48b1-9bc9-ef192d4e1e53', '5a56757b-ece3-78b1-9bc9-ef192d4e1e53');
+INSERT INTO public.user_role_relation (role_id, user_id) VALUES ('0c56847a-ece3-48b1-9bc9-ef192d4e1e53', '5a62757b-ece3-78b1-9bc9-ef192d4e1e53');
+INSERT INTO public.user_role_relation (role_id, user_id) VALUES ('0c56847a-ece3-48b1-9bc9-ef192d4e1e53', '5a56757b-ece3-78b1-9bc9-ef192d4e1e93');
+INSERT INTO public.user_role_relation (role_id, user_id) VALUES ('0c56847a-ece3-48b1-9bc9-ef192d4e1e53', '9a56757b-ece3-78b1-9bc9-ef192d4e1e93');

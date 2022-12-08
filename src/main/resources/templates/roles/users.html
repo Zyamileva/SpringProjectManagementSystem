@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:include="navigation"></div>
+<table>
+    <thead>
+    <tr th:if="${roles!=null}">
+        <th style="text-align: left; width:250px; font-weight: bold; margin: 15px">role name:</th>
+    </tr>
+    <div th:if="${roles==null}">
+        <p>There is not role</p>
+    </div>
+    </thead>
+    <tbody>
+    <tr th:each="role: ${roles}">
+        <td style="text-align: left; width:250px; margin: 15px" th:text="${role.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

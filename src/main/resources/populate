@@ -1,0 +1,55 @@
+create table manufacturers
+(
+	id uuid
+    constraint manufacturers_pk PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+	UNIQUE(name)
+);
+
+alter table manufacturers owner to postgres;
+
+create table products
+(
+	id uuid
+    constraint product_pk PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+	price bigint NOT NULL,
+    manufacturer_id uuid NOT NULL,
+    FOREIGN KEY (manufacturer_id)
+    REFERENCES manufacturers ON DELETE CASCADE,
+    UNIQUE (name, manufacturer_id)
+);
+
+alter table products owner to postgres;
+
+create table role
+(
+	id uuid
+    constraint role_pk PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    UNIQUE (name)
+);
+
+alter table role owner to postgres;
+
+create table users
+(
+	id uuid
+    constraint user_pk PRIMARY KEY,
+    email VARCHAR(20) NOT NULL,
+    password VARCHAR(20) NOT NULL,
+    firstname VARCHAR(20) NOT NULL,
+    lastname VARCHAR(20) NOT NULL,
+    UNIQUE (email)
+);
+
+alter table users owner to postgres;
+
+create table user_role_relation
+(
+	role_id uuid REFERENCES role(id) ON DELETE CASCADE,
+	user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+	UNIQUE(role_id, user_id)
+);
+
+alter table user_role_relation owner to postgres;
