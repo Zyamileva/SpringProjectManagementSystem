@@ -27,6 +27,6 @@ public class RoleDao {
     private UUID id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private Set<UsersDao> users = new HashSet<>();
 }

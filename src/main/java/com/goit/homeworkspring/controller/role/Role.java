@@ -10,6 +10,7 @@ import com.goit.homeworkspring.service.RoleServiceImpl;
 import com.goit.homeworkspring.service.UsersServiceImpl;
 import com.goit.homeworkspring.service.converter.Converter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +26,7 @@ public class Role {
     private final Converter<RoleDto, RoleDao> converterRole;
     private final UsersServiceImpl users;
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/all")
     protected ModelAndView findAll() {
         ModelAndView model = new ModelAndView("roles/all");
@@ -32,6 +34,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/{role_id}")
     protected ModelAndView get(@PathVariable("role_id") UUID id) {
         ModelAndView model = new ModelAndView("roles/users");
@@ -42,6 +45,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/create/form")
     protected ModelAndView createForm() {
         ModelAndView model = new ModelAndView("roles/createForm");
@@ -49,6 +53,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/create")
     protected ModelAndView create(RoleDto roleDto) {
         ModelAndView model = new ModelAndView("message");
@@ -61,6 +66,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/delete/form")
     protected ModelAndView deleteForm() {
         ModelAndView model = new ModelAndView("roles/deleteForm");
@@ -68,6 +74,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/delete")
     protected ModelAndView delete(@RequestParam(value = "role") RoleDao roleDao) {
         ModelAndView model = new ModelAndView("message");
@@ -76,12 +83,14 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/find/form")
     protected ModelAndView findByNameForm() {
         ModelAndView model = new ModelAndView("roles/findForm");
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @PostMapping("/find")
     protected ModelAndView findByName(@RequestParam(value = "name") String name) {
         ModelAndView model = new ModelAndView("roles/find");
@@ -93,6 +102,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/update/form")
     protected ModelAndView updateForm() {
         ModelAndView model = new ModelAndView("roles/updateForm");
@@ -100,6 +110,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/update")
     protected ModelAndView update(@RequestParam(value = "role") RoleDao roleDao) {
         ModelAndView model = new ModelAndView("roles/update");
@@ -107,6 +118,7 @@ public class Role {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/update/{role_id}")
     protected ModelAndView get(@PathVariable("role_id") UUID uuid, RoleDto roleDto) {
         RoleDto roleUpdate = roles.findById(uuid).get();

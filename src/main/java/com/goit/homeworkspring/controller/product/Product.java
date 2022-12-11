@@ -9,6 +9,7 @@ import com.goit.homeworkspring.service.ManufacturersServiceImpl;
 import com.goit.homeworkspring.service.ProductsServiceImpl;
 import com.goit.homeworkspring.service.converter.Converter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +25,7 @@ public class Product {
     private final Converter<ProductsDto, ProductsDao> converterProduct;
     private final ManufacturersServiceImpl manufacturers;
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/all")
     protected ModelAndView findAll() {
         ModelAndView model = new ModelAndView("products/all");
@@ -31,6 +33,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/{product_id}")
     protected ModelAndView get(@PathVariable("product_id") UUID id) {
         ModelAndView model = new ModelAndView("products/manufacturer");
@@ -39,6 +42,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/create/form")
     protected ModelAndView createForm() {
         ModelAndView model = new ModelAndView("products/createForm");
@@ -46,6 +50,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/create")
     protected ModelAndView create(ProductsDto productsDto, @RequestParam(value = "manufacturer") UUID id) {//, ModelAndView modelAndView) {"manufacturer.id
         ModelAndView model = new ModelAndView("message");
@@ -59,6 +64,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/delete/form")
     protected ModelAndView deleteForm() {
         ModelAndView model = new ModelAndView("products/deleteForm");
@@ -66,6 +72,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/delete")
     protected ModelAndView delete(@RequestParam(value = "product") ProductsDao productsDao) {
         ModelAndView model = new ModelAndView("message");
@@ -74,12 +81,14 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/find/form")
     protected ModelAndView findByNameForm() {
         ModelAndView model = new ModelAndView("products/findForm");
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @PostMapping("/find")
     protected ModelAndView findByName(@RequestParam(value = "name") String name) {
         ModelAndView model = new ModelAndView("products/find");
@@ -91,6 +100,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/update/form")
     protected ModelAndView updateForm() {
         ModelAndView model = new ModelAndView("products/updateForm");
@@ -98,6 +108,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/update")
     protected ModelAndView update(@RequestParam(value = "product") ProductsDao productsDao) {
         ModelAndView model = new ModelAndView("products/update");
@@ -105,6 +116,7 @@ public class Product {
         return model;
     }
 
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/update/{product_id}")
     protected ModelAndView get(@PathVariable("product_id") UUID id,
                                ProductsDto productsDto) {
