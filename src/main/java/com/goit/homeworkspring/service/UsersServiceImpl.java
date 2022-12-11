@@ -1,6 +1,5 @@
 package com.goit.homeworkspring.service;
 
-import com.goit.homeworkspring.model.dao.ProductsDao;
 import com.goit.homeworkspring.model.dao.UsersDao;
 import com.goit.homeworkspring.model.dto.UsersDto;
 import com.goit.homeworkspring.repository.UsersRepository;
@@ -34,7 +33,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     public List<UsersDto> findByEmail(String query) {
-        return usersRepository.findByEmailLikeIgnoreCase("%" + query + "%").stream()
+        return usersRepository.findByEmailLikeIgnoreCase(query).stream()
                 .map(converterUser::from).collect(Collectors.toList());
     }
 

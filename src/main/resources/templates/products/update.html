@@ -11,7 +11,7 @@
 </head>
 <body>
 <div th:include="navigation"></div>
-<form th:action="@{/product/update/{product_name}(product_name=${product.name})}" object="${productDto}"  method="POST">
+<form th:action="@{/product/update/{product_id}(product_id=${product.id})}" object="${productDto}"  method="POST">
     <label style="text-align: center; width:200px; margin:15px">New product name: </label>
     <input  style="text-align: center; width:250px; margin:15px"; type="text" th:name="name">
     <label style="text-align: center; width:200px; margin:15px">New price: </label>

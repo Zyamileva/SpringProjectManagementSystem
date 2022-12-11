@@ -13,16 +13,22 @@
 <div th:include="navigation"></div>
 <table>
     <thead>
-    <tr th:if="${roles!=null}">
-        <th style="text-align: left; width:250px; font-weight: bold; margin: 15px">role name:</th>
+    <tr th:if="${users!=null}">
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">email:</th>
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">password:</th>
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">firstName:</th>
+        <th style="text-align: center; width:250px; font-weight: bold; margin: 15px">lastName:</th>
     </tr>
-    <div th:if="${roles==null}">
-        <p>There is not role</p>
+    <div th:if="${users==null}">
+        <p>There is not users</p>
     </div>
     </thead>
     <tbody>
-    <tr th:each="role: ${roles}">
-        <td style="text-align: left; width:250px; margin: 15px" th:text="${role.name}"></td>
+    <tr th:each="user: ${users}">
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.email}"></td>
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.password}"></td>
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.firstname}"></td>
+        <td style="text-align: center; width:250px; margin: 15px" th:text="${user.lastname}"></td>
     </tr>
     </tbody>
 </table>

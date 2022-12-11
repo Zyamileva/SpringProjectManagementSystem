@@ -31,7 +31,7 @@ public class ProductsServiceImpl implements ProductsService {
         return converterProduct.from(productsRepository.save(dao));
     }
 
-
+    @Override
     public List<ProductsDto> findByName(String query) {
         return productsRepository.findByNameLikeIgnoreCase("%" + query + "%").stream()
                 .map(converterProduct::from).collect(Collectors.toList());

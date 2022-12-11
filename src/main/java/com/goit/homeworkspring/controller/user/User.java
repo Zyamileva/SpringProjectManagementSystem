@@ -42,7 +42,6 @@ public class User {
     @GetMapping("/{user_id}")
     protected ModelAndView get(@PathVariable("user_id") UUID id) {
         ModelAndView model = new ModelAndView("users/role");
-        Set<RoleDto> roles = users.findById(id).get().getRoles();
         model.getModelMap().addAttribute("roles", users.findById(id).get().getRoles());
         return model;
     }

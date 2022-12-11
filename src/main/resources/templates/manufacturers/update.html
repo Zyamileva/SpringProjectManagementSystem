@@ -11,8 +11,8 @@
 </head>
 <body>
 <div th:include="navigation"></div>
-<form th:action="@{/manufacturer/update/{manufacturer_name}(manufacturer_name=${manufacturer.name})}" object="${manufacturerDto}"  method="POST">
-    <label style="text-align: center; width:200px; margin:15px">New company name: </label>
+<form th:action="@{/manufacturer/update/{manufacturer_id}(manufacturer_id=${manufacturer.id})}" object="${manufacturerDto}"  method="POST">
+    <label style="text-align: center; width:200px; margin:15px">New manufacturer`s name: </label>
     <input  style="text-align: center; width:250px; margin:15px"; type="text" th:name="name">
     <button type="submit">Update</button>
 </form>

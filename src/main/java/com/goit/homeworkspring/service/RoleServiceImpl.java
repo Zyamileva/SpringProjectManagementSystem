@@ -1,7 +1,6 @@
 package com.goit.homeworkspring.service;
 
 import com.goit.homeworkspring.model.dao.RoleDao;
-import com.goit.homeworkspring.model.dao.UsersDao;
 import com.goit.homeworkspring.model.dto.RoleDto;
 import com.goit.homeworkspring.repository.RoleRepository;
 import com.goit.homeworkspring.service.converter.Converter;
@@ -31,6 +30,12 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findByNameLikeIgnoreCase("%" + query + "%").stream()
                 .map(converterRole::from).collect(Collectors.toList());
     }
+
+    public List<RoleDto> findByNameByCreate(String query) {
+        return roleRepository.findByNameLikeIgnoreCase(query).stream()
+                .map(converterRole::from).collect(Collectors.toList());
+    }
+
 
     @Override
     public Optional<RoleDto> findById(UUID id) {

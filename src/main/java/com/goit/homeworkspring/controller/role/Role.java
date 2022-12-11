@@ -1,9 +1,6 @@
 package com.goit.homeworkspring.controller.role;
 
-
-import com.goit.homeworkspring.model.dao.ManufacturersDao;
 import com.goit.homeworkspring.model.dao.RoleDao;
-import com.goit.homeworkspring.model.dto.ManufacturersDto;
 import com.goit.homeworkspring.model.dto.RoleDto;
 import com.goit.homeworkspring.model.dto.UsersDto;
 import com.goit.homeworkspring.service.RoleServiceImpl;
@@ -26,7 +23,7 @@ public class Role {
     private final Converter<RoleDto, RoleDao> converterRole;
     private final UsersServiceImpl users;
 
-    @Secured(value = {"ROLE_Admin", "ROLE_User"})
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/all")
     protected ModelAndView findAll() {
         ModelAndView model = new ModelAndView("roles/all");
@@ -34,13 +31,12 @@ public class Role {
         return model;
     }
 
-    @Secured(value = {"ROLE_Admin", "ROLE_User"})
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/{role_id}")
     protected ModelAndView get(@PathVariable("role_id") UUID id) {
         ModelAndView model = new ModelAndView("roles/users");
         if (roles.findById(id).isPresent()) {
-            Set<UsersDto> users = roles.findById(id).get().getUsers();
-            model.getModelMap().addAttribute("users", users);
+            model.getModelMap().addAttribute("users", roles.findById(id).get().getUsers());
         }
         return model;
     }
@@ -57,7 +53,7 @@ public class Role {
     @PostMapping("/create")
     protected ModelAndView create(RoleDto roleDto) {
         ModelAndView model = new ModelAndView("message");
-        if (!roles.findByName(roleDto.getName()).isEmpty()) {
+        if (!roles.findByNameByCreate(roleDto.getName()).isEmpty()) {
             model.addObject("message", "Role " + roleDto.getName() + " create yet");
             return model;
         }
@@ -83,14 +79,14 @@ public class Role {
         return model;
     }
 
-    @Secured(value = {"ROLE_Admin", "ROLE_User"})
+    @Secured(value = {"ROLE_Admin"})
     @GetMapping("/find/form")
     protected ModelAndView findByNameForm() {
         ModelAndView model = new ModelAndView("roles/findForm");
         return model;
     }
 
-    @Secured(value = {"ROLE_Admin", "ROLE_User"})
+    @Secured(value = {"ROLE_Admin"})
     @PostMapping("/find")
     protected ModelAndView findByName(@RequestParam(value = "name") String name) {
         ModelAndView model = new ModelAndView("roles/find");

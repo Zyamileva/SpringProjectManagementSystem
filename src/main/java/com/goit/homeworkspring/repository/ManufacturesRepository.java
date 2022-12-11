@@ -8,7 +8,5 @@ import java.util.*;
 
 @Repository
 public interface ManufacturesRepository extends JpaRepository<ManufacturersDao, UUID> {
-
     List<ManufacturersDao> findByNameLikeIgnoreCase(String name);
-
 }
