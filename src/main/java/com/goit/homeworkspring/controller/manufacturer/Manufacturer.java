@@ -1,9 +1,7 @@
 package com.goit.homeworkspring.controller.manufacturer;
 
-
 import com.goit.homeworkspring.model.dao.ManufacturersDao;
 import com.goit.homeworkspring.model.dto.ManufacturersDto;
-import com.goit.homeworkspring.model.dto.ProductsDto;
 import com.goit.homeworkspring.service.ManufacturersServiceImpl;
 import com.goit.homeworkspring.service.converter.Converter;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -21,6 +18,7 @@ import java.util.UUID;
 public class Manufacturer {
     private final ManufacturersServiceImpl manufacturers;
     private final Converter<ManufacturersDto, ManufacturersDao> converterManufacturer;
+
     @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/all")
     protected ModelAndView findAll() {
@@ -28,6 +26,7 @@ public class Manufacturer {
         model.getModelMap().addAttribute("manufacturers", manufacturers.findAll());
         return model;
     }
+
     @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/{manufacturer_id}")
     protected ModelAndView get(@PathVariable("manufacturer_id") UUID id) {
@@ -35,12 +34,14 @@ public class Manufacturer {
         model.getModelMap().addAttribute("products", manufacturers.findById(id).get().getProducts());
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @GetMapping("/create/form")
     protected ModelAndView createForm() {
         ModelAndView model = new ModelAndView("manufacturers/createForm");
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @PostMapping("/create")
     protected ModelAndView create(ManufacturersDto manufacturersDto) {
@@ -53,6 +54,7 @@ public class Manufacturer {
         model.addObject("message", "Manufacturer " + manufacturer.getName() + " create");
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @GetMapping("/delete/form")
     protected ModelAndView deleteForm() {
@@ -60,6 +62,7 @@ public class Manufacturer {
         model.getModelMap().addAttribute("manufacturers", manufacturers.findAll());
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @PostMapping("/delete")
     protected ModelAndView delete(@RequestParam(value = "manufacturer") ManufacturersDao manufacturerDao) {
@@ -68,12 +71,14 @@ public class Manufacturer {
         model.addObject("message", "Manufacturer " + manufacturerDao.getName() + " delete");
         return model;
     }
+
     @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @GetMapping("/find/form")
     protected ModelAndView findByNameForm() {
         ModelAndView model = new ModelAndView("manufacturers/findForm");
         return model;
     }
+
     @Secured(value = {"ROLE_Admin", "ROLE_User"})
     @PostMapping("/find")
     protected ModelAndView findByName(@RequestParam(value = "name") String name) {
@@ -85,6 +90,7 @@ public class Manufacturer {
         model.addObject("manufacturer", "Manufacturer " + name + " does not find");
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @GetMapping("/update/form")
     protected ModelAndView updateForm() {
@@ -92,6 +98,7 @@ public class Manufacturer {
         model.getModelMap().addAttribute("manufacturers", manufacturers.findAll());
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @PostMapping("/update")
     protected ModelAndView update(@RequestParam(value = "manufacturer") ManufacturersDao manufacturerDao) {
@@ -99,6 +106,7 @@ public class Manufacturer {
         model.addObject("manufacturer", manufacturerDao);
         return model;
     }
+
     @Secured(value = {"ROLE_Admin"})
     @PostMapping("/update/{manufacturer_id}")
     protected ModelAndView get(@PathVariable("manufacturer_id") UUID id,

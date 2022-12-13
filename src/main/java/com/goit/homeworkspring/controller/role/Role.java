@@ -2,7 +2,6 @@ package com.goit.homeworkspring.controller.role;
 
 import com.goit.homeworkspring.model.dao.RoleDao;
 import com.goit.homeworkspring.model.dto.RoleDto;
-import com.goit.homeworkspring.model.dto.UsersDto;
 import com.goit.homeworkspring.service.RoleServiceImpl;
 import com.goit.homeworkspring.service.UsersServiceImpl;
 import com.goit.homeworkspring.service.converter.Converter;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
 import java.util.UUID;
 
 @RequiredArgsConstructor

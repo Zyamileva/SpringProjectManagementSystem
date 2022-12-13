@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 @SpringBootApplication
 public class HomeWorkSpringApplication {
 
@@ -26,6 +25,5 @@ public class HomeWorkSpringApplication {
                 return encodedPassword.equals(rawPassword + "");
             }
         };
-//		return new BCryptPasswordEncoder();
     }
 }

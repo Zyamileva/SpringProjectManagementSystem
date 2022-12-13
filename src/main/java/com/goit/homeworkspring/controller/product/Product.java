@@ -1,7 +1,5 @@
 package com.goit.homeworkspring.controller.product;
 
-
-import com.goit.homeworkspring.model.dao.ManufacturersDao;
 import com.goit.homeworkspring.model.dao.ProductsDao;
 import com.goit.homeworkspring.model.dto.ManufacturersDto;
 import com.goit.homeworkspring.model.dto.ProductsDto;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
