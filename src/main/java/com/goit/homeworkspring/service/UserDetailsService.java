@@ -17,9 +17,6 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String username) {
         List<UsersDto> usersDto = usersService.findByEmail(username);
-//        if (usersDto.isEmpty()) {
-//            throw new UsernameNotFoundException("Unknown user: " + username);
-//        }
         UsersDto user = usersDto.get(0);
         Set<GrantedAuthority> roles = user.getRoles().stream().map(RoleDto::getName).map(it -> it.replace(it, "ROLE_" + it))
                 .map((it -> (GrantedAuthority) () -> it)).collect(Collectors.toSet());

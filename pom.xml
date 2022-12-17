@@ -75,7 +75,7 @@
             <version>2.4.8</version>
         </dependency>
     </dependencies>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <build>
         <plugins>
@@ -93,5 +93,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
