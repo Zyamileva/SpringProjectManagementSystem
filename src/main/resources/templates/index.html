@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
+<html xmlns:th="https://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Bootstrap 5 Example</title>
     <meta charset="utf-8">
@@ -10,7 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:include="navigation"></div>
+<div sec:authorize="hasRole('User') and not hasRole('Admin')" th:include="navigation"></div>
 
+<div sec:authorize="hasAnyRole('Admin')" th:include="navigationUser"></div>
 </body>
 </html>
